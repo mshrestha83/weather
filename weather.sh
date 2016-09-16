@@ -1,7 +1,25 @@
 #!/bin/bash
 # test
 
-curl "https://www.wunderground.com/history/airport/GNV/2016/09/15/DailyHistory.heml?&format=1" > gnv.txt
+echo "What do you want?"
+
+read dat
+
+echo "What month do you want?"
+
+read month
+
+echo "What year do you want?"
+
+read year
+
+year=date -d yesterday +%Y
+
+month= date -d yesterday +%M
+
+day= date -d yesterday +%D
+
+curl "https://www.wunderground.com/history/airport/GNV/$year/$month/$day/DailyHistory.heml?&format=1" > gnv.txt
 
 maxTemp=`awk -F',' '{print $2}' gnv.txt | sort -n | tail -n1`
 
